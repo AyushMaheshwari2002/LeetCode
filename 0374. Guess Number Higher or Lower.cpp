@@ -1,5 +1,8 @@
-public class Solution extends GuessGame {
-    public int guessNumber(int n) {
+//374. Guess Number Higher or Lower
+
+class Solution {
+public:
+    int guessNumber(int n) {
         int start = 0;                                    // start from 0
         int end = n;                                      // till n --> GivenNumber
       
