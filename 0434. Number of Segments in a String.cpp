@@ -13,3 +13,26 @@
 
 
 
+class Solution {
+public:
+    int countSegments(string s) 
+    {
+        // Breaking input into word using string stream
+        // Used for breaking words
+        stringstream str(s);
+
+        // To store individual words
+        string word;
+
+        int count = 0;
+        while (str >> word)
+        {
+            count++;
+        }
+        
+        return count;
+    }
+};
+
+
+
