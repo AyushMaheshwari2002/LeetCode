@@ -33,3 +33,10 @@
 
 
 
+SELECT Email FROM Person
+GROUP BY Email           #GROUP BY clause is used to group rows that have the same values.
+HAVING COUNT(*) > 1;     #COUNT(*) function counts the total rows in the table, including the NULL values.
+
+
+
+        
