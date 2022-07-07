@@ -20,3 +20,32 @@
 
 
 
+class Solution {
+public:
+    int minSteps(string s, string t)
+    {
+        vector<int> v(26 , 0);
+        int count = 0;
+        
+        for(int i = 0; i < s.size(); i++)
+        {
+            v[s[i] - 'a']++;
+        }
+        
+        for(int i = 0; i < t.size(); i++)
+        {
+            v[t[i] - 'a']--;
+        }
+        
+        //Now the vector will only store only the frequency of characters that are different
+        for(int i = 0; i < v.size(); i++)
+        {
+            count += abs(v[i]);
+        }
+        
+        return count;     
+    }
+};
+
+
+
