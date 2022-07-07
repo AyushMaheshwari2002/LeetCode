@@ -47,3 +47,31 @@
 
 
 
+class FindElements {
+public:
+    unordered_set<int> s;
+    
+    void recover(TreeNode* root, int x)
+    {
+        if(root == NULL)
+            return;
+         
+        root -> val = x;
+        s.insert(x);
+        
+        recover(root -> left , 2*x+1);
+        recover(root -> right , 2*x+2);
+    }
+    FindElements(TreeNode* root) 
+    {
+        recover(root , 0);
+    }
+    
+    bool find(int target) 
+    {
+        return s.find(target) != s.end();
+    }
+};
+
+
+
