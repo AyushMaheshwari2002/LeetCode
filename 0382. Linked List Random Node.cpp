@@ -23,3 +23,28 @@
 
 
 
+class Solution {
+public:
+    
+    vector<int> v;
+    
+    Solution(ListNode* head) 
+    { 
+        while(head != NULL)
+        { 
+            // Storing all the values by iterating over the LinkedList
+            v.push_back(head -> val);
+            head = head -> next;
+        }
+    }
+    
+    int getRandom()
+    { 
+        int x = rand() % v.size();   // generate a random no. between 0 to vector size
+        
+        return v[x];             // return the value at that index
+    }
+};
+
+
+
