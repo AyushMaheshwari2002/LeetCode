@@ -26,3 +26,36 @@
 
 
 
+class Solution {
+public:
+    Node* copyRandomList(Node* head) 
+    {
+        // create a map for storing Node's copy's address corresponding to Node's address
+        map <Node* , Node*> m;
+        
+        // traverse a linked list and
+        // create a copy corrseponding to every node's value
+        Node* temp = head;
+        while(temp != NULL)
+        {
+            Node* copy = new Node(temp -> val);
+            m[temp] = copy;
+            temp = temp -> next;
+        }
+        
+        //after traverse we have to make connections so that we have to traverse linked list again
+        temp = head;
+        while(temp != NULL)
+        {
+            m[temp] -> next = m[temp -> next];
+            m[temp] -> random = m[temp -> random];
+            temp = temp -> next;
+        }
+        
+        return m[head];
+    }
+};
+
+
+
+
