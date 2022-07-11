@@ -25,3 +25,85 @@
 
 
 
+/*
+class Solution {
+public:
+    vector<int> twoOutOfThree(vector<int>& num1, vector<int>& num2, vector<int>& num3) 
+    {
+        set<int> a , b , c;
+        
+        for(auto x : num1)
+            a.insert(x);
+        
+        for(auto x : num2) 
+            b.insert(x);
+        
+        for(auto x : num3) 
+            c.insert(x);
+        
+        
+        map<int,int> m;
+        for(auto x : a)
+            m[x]++;
+        
+        for(auto x : b) 
+            m[x]++;
+        
+        for(auto x : c)
+            m[x]++;
+        
+        
+        vector<int> res;
+        for(auto x : m)
+        {
+            if(x.second > 1) 
+                res.push_back(x.first);
+        }
+        
+        return res;
+    }
+};
+*/
+
+
+
+class Solution {
+public:
+    vector<int> twoOutOfThree(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3) 
+    {
+        set<int> s;
+        set<int> res;
+        
+        for(int i : nums1) 
+        {
+            s.insert(i);
+        }
+        
+        for(int i : nums2) 
+        {
+            if(s.find(i) != s.end()) 
+            {
+                res.insert(i);
+            }
+        }
+        
+        for(int i : nums2)
+        {
+            s.insert(i);
+        }
+        
+        for(int i : nums3)
+        {
+            if(s.find(i) != s.end()) 
+            {
+                res.insert(i);
+            }
+        }
+        
+        // convert set into vector
+        return vector<int>(res.begin(), res.end());
+    }
+};
+
+
+
