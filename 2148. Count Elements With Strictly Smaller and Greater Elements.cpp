@@ -8,11 +8,32 @@
                 In total there are 2 elements having both a strictly smaller and a strictly greater element appear in nums.
 
           Example 2:
-                Input: nums = [-3,3,3,90]
-                Output: 2
-                Explanation: The element 3 has the element -3 strictly smaller than it and the element 90 strictly greater than it.
-                Since there are two elements with the value 3, in total there are 2 elements having both a strictly smaller and a strictly greater element appear in nums.
+             Input: nums = [-3,3,3,90]
+             Output: 2
+             Explanation: The element 3 has the element -3 strictly smaller than it and the element 90 strictly greater than it.
+             Since there are two elements with the value 3, in total there are 2 elements having both a strictly smaller and a strictly greater element appear in nums.
 */
+
+
+
+class Solution {
+public:
+    int countElements(vector<int>& nums) 
+    {
+        int mx = *max_element(nums.begin(), nums.end()); 
+        int mn = *min_element(nums.begin(), nums.end()); 
+        
+        int res = 0;
+        
+        for(int i = 0; i < nums.size(); i++)
+        {
+            if(mn < nums[i] && nums[i] < mx)
+                res++;
+        }
+        
+        return res;
+    }
+};
 
 
 
