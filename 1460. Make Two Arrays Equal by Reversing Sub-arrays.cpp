@@ -24,3 +24,52 @@
 
 
 
+// TC : O(n)     SC : O(n)
+
+class Solution {
+public:
+     bool canBeEqual(vector<int>& target, vector<int>& arr) 
+     {
+        map<int,int> m;
+         
+        for(int i = 0 ; i < arr.size() ; i++)
+        {
+            m[arr[i]]++;
+            m[target[i]]--;
+        }
+         
+        for(auto i : m) 
+        { 
+            if(i.second != 0)
+                return false;
+        }
+         
+        return true; 
+    }
+};
+
+
+
+/* TC : O(Nlog n)
+class Solution {
+public:
+    bool canBeEqual(vector<int>& target, vector<int>& arr)
+    {
+        sort(target.begin(),target.end());
+        sort(arr.begin(),arr.end());
+        
+        for(int i = 0; i < arr.size(); i++)
+        {
+            if(target[i] != arr[i])
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+};
+*/
+
+
+
