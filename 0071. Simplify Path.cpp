@@ -28,3 +28,44 @@
 
 
 
+
+class Solution {
+public:
+    string simplifyPath(string path) 
+    {
+        vector<string> v;
+        string ans = "";
+        
+        for(int i = 0; i < path.size(); i++)
+        {
+            string str = "";
+            
+            while(i < path.size() && path[i] != '/') 
+                str += path[i++];              //get the string till i hits '/'
+            
+            if(str == "" || str == ".") 
+                continue;                     //If the string we get is "." or "" we skip the pushing part
+            
+            else if(str == "..")
+            {                                  
+                if(v.size() > 0) 
+                    v.pop_back();             //If "..", we pop back so as to go to parent directory
+            }
+            
+            else 
+                v.push_back(str);             //To push the string we obtained till '/'     
+        }
+        
+        if(v.size() == 0) 
+            return "/";
+        
+        for(int i = 0; i < v.size(); i++)
+            ans += "/" + v[i];
+        
+        return ans;
+    }
+};
+
+
+
+
