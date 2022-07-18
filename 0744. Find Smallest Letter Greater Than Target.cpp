@@ -19,3 +19,22 @@
 
 
 
+class Solution {
+public:
+    char nextGreatestLetter(vector<char>& letters, char target)
+    {
+        sort(letters.begin(),letters.end());
+        
+        for(int i = 0; i < letters.size(); i++)
+        {
+            if(letters[i] > target)
+                return letters[i];
+        }
+        
+        return letters[0];        // if target is 'z' so that there is no element which is greater than 'z' so that the element which is present at index 0; 
+                                  // we assume that like a cycle. Ex : ...x y z a b c...
+    }
+};
+
+
+
