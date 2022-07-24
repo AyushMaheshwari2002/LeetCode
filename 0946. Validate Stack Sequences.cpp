@@ -18,3 +18,29 @@
 
 
 
+class Solution {
+public:
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped)
+    {
+        stack<int> s;
+        int j = 0;
+        
+        for (int i = 0; i < pushed.size(); i++) 
+        {
+            s.push(pushed[i]);
+            
+            // check weather the current top element of stack matches with the "i"th element that needs to get popped
+            while (!s.empty() && s.top() == popped[j]) 
+            { 
+                s.pop();
+                j++;
+            }
+        }
+        
+        // Since pushed is a permutation of popped so that at the end we are supposed to be left with an empty stack
+        return s.empty();
+    }
+};
+
+
+
