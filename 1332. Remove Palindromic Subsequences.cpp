@@ -25,3 +25,30 @@
 
 
 
+/* The trick in the Question is to realize that the string can only contain 'a' and 'b'. 
+   If the string is a palindrome, you can straightaway remove it which takes only 1 step.
+   If it is not palindrome, then club all A's together into one palindrome, and all Bs together in another. Then remove both the palindromes one by one which
+   take 2 steps. 
+*/
+
+class Solution {
+public:
+    int removePalindromeSub(string s)
+    {
+        if(s.size() == 0) 
+            return 0;
+        
+        string str = s;
+        
+        reverse(str.begin(),str.end());
+        
+        if(s == str)        // if string is fully palindromic
+            return 1;
+        
+        return 2;
+    }
+};
+
+
+
+
