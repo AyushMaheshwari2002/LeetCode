@@ -15,3 +15,32 @@
 
 
 
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) 
+    {
+        vector<string> ans;
+        unordered_map<string,int> m;
+        
+        if(s.length() <= 10)
+            return ans;
+        
+        for(int i = 0; i <= s.length()-10; i++)
+        {
+            string a = s.substr(i , 10);     // create a substring of 10 characters long.
+            m[a]++;
+        }
+        
+        for(auto i : m)
+        {
+            if(i.second > 1)
+                ans.push_back(i.first);
+        }
+        
+        return ans;    
+    }
+};
+
+
+
+
