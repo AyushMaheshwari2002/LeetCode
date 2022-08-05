@@ -28,3 +28,41 @@
 
 
 
+class Solution {
+public:
+    vector<int> findEvenNumbers(vector<int>& digits)
+    {
+        vector<int> ans;
+        set<int> s;
+     
+        for(int i = 0; i < digits.size(); i++)
+        {
+            if(digits[i] == 0)
+                continue;
+            
+            for(int j = 0; j < digits.size(); j++)
+            {
+                for(int k = 0; k < digits.size(); k++)
+                {
+                    // we have to make unique numbers so we check this condition
+                    // we don't make these type of numbers like 111 , 222, 333 etc.
+                    if(i != j && j != k && k != i)
+                    {
+                        int res = digits[i]*100 + digits[j]*10 + digits[k];
+                        
+                        if(res % 2 == 0)
+                            s.insert(res);
+                    }
+                }
+            }
+        }       
+        
+        for(auto i : s)
+            ans.push_back(i);
+        
+        return ans;     
+    }
+};
+
+
+
