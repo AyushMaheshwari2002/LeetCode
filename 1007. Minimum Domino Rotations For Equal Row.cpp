@@ -21,3 +21,35 @@
 
 
 
+class Solution {
+public:
+    int minDominoRotations(vector<int>& tops, vector<int>& bottoms)
+    {
+        int n = tops.size();
+        
+        // faceA for counting the occurence of numbers in tops
+		// faceB for counting occurence of numbers in bottoms
+        // same for counting occurence when both tops and bottoms have same value
+        vector<int> faceA(7), faceB(7), same(7);
+        
+        for(int i = 0; i < n; i++)
+        {
+            faceA[tops[i]]++;
+            faceB[bottoms[i]]++;
+            
+            if(tops[i] == bottoms[i])
+                same[tops[i]]++;
+        }
+        
+        for(int i = 1; i <= 6; i++)
+        {
+            if(faceA[i] + faceB[i] - same[i] == n)
+                return n - max(faceA[i], faceB[i]);
+        }
+        
+        return -1;
+    }
+};
+
+
+
