@@ -24,3 +24,26 @@
 
 
 
+class Solution {
+public:
+    string getPermutation(int n, int k)
+    {
+       int num = 0;
+       
+        // using this loop we get the 1st permutation of n
+       for(int i = 1; i <= n; ++i)
+           num = num * 10 + i;
+    
+        string s = to_string(num);
+      
+        while(--k)
+        {
+            next_permutation(s.begin(),s.end());
+        }
+        
+       return s;
+    }
+};
+
+
+
