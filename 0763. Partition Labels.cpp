@@ -17,3 +17,39 @@
 
 
 
+class Solution {
+public:
+    vector<int> partitionLabels(string s) 
+    {
+        // this will store the index of last occurrence of character
+        vector<int> last_occ(26,0);
+       
+        // find the index of last occurrence
+        for(int i = 0; i < s.size(); i++)
+        {
+            last_occ[s[i] - 'a'] = i;
+        }
+        
+        vector<int> ans;
+        int start = 0, end = 0;
+        
+        // whenever we find the character
+        // we point the end to the last index of that character
+        for(int i = 0; i < s.size(); i++)
+        {
+            end = max(end , last_occ[s[i] - 'a']);
+            if(i == end)
+            {
+                // all the characters of current partition included
+                ans.push_back(i - start + 1);
+				// update the start pointer for fresh start
+                start = i + 1;
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+
