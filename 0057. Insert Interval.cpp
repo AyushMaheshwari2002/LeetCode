@@ -17,3 +17,40 @@
 
 
 
+class Solution {
+public:
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) 
+    {
+        vector<vector<int>> ans;
+        int i = 0 , n = intervals.size();
+        
+        //the new interval is come AFTER the range of other interval(means new interval comes at the end)
+        while(i < n && intervals[i][1] < newInterval[0])
+        {
+            ans.push_back(intervals[i]);
+            i++;
+        }
+        
+        //the new interval is in the range of the other interval(means overlapping happens)
+        while(i < n && intervals[i][0] <= newInterval[1])
+        {
+            newInterval[0] = min(newInterval[0], intervals[i][0]);
+            newInterval[1] = max(newInterval[1], intervals[i][1]);
+            i++;
+        }
+        ans.push_back(newInterval);
+        
+        //the new interval's range is before the other interval(means new interval cones at the beginning)
+        while(i < n)
+        {
+            ans.push_back(intervals[i]);
+            i++;
+        }
+        
+        return ans;
+    }
+};
+
+
+
+
