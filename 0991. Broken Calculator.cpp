@@ -22,3 +22,50 @@
 
 
 
+/* ITERATIVE METHOD
+class Solution {
+public:
+    int brokenCalc(int startValue, int target)
+    {
+        int ans = 0;
+        
+        while(target > startValue)
+        {
+            ans++;
+            
+            // if target is even then we have to divide it by 2
+            if(target % 2 == 0)
+                target = target / 2;
+            
+            // if target is odd then we have to add 1
+            else
+                target++;
+        }
+        
+        return ans + (startValue - target);
+    }
+};
+*/
+
+
+
+// RECURSIVE APPROACH
+class Solution {
+public:
+    int brokenCalc(int startValue, int target)
+    {
+        if(startValue >= target)
+            return startValue - target;
+        
+        // if target is even
+        if(target % 2 == 0)
+            return 1 + brokenCalc(startValue , target/2);
+        
+        // if target is odd
+        return 1 + brokenCalc(startValue , target + 1);
+    }
+};
+
+
+
+
