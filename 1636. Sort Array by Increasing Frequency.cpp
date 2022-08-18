@@ -20,3 +20,38 @@
 
 
 
+/*    
+USE LAMBDA FUNCTION
+FORMAT : 
+        [&] (int a , int b) { return Expression; }
+        [&] (parameters) { return Expression; }
+        
+If using a lambda function during sort. The lambda function specifies how to sort :-
+        1. if the two no.s have different frequencies, the one with smaller frequency goes first.
+        2. If frequencies are equal, then lexicographically greater goes first.
+*/
+
+
+
+class Solution {
+public:
+    vector<int> frequencySort(vector<int>& nums)
+    {
+        unordered_map<int , int> m;
+        
+        for(int i = 0; i < nums.size(); i++)
+        {
+            m[nums[i]]++;
+        }
+        
+        sort(nums.begin(),nums.end() , [&] (int a, int b)
+             //if frequencies are not equal then check which one is greater or
+             // if frequencies are equal then check which element is greater
+             { return m[a] != m[b] ? m[a] < m[b] : a > b ; });
+        
+        return nums;
+    }
+};
+
+
+
