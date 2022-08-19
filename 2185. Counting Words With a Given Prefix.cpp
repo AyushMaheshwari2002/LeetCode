@@ -16,3 +16,24 @@
 
 
 
+class Solution {
+public:
+
+    int prefixCount(vector<string>& words, string pref) 
+    {
+        int count = 0;
+        
+        for(auto word : words)
+        {
+            // Check if word contains pref, and if it contains then it should be at 0th position
+            if(word.find(pref) == 0)
+                count++;
+        }
+        
+        return count;
+    }
+};
+
+
+
+
