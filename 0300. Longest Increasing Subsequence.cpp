@@ -19,3 +19,29 @@
 
 
 
+class Solution {
+public:
+    int LIS(vector<int>& nums, int n)
+    {
+        vector<int> v(n,1);
+        
+        for(int i = 1; i < n; ++i)
+        {
+            for(int j = 0; j < i; ++j)
+            {
+                if(nums[i] > nums[j] && v[i] < v[j]  + 1)
+                    v[i] = v[i] + 1;
+            }
+        }
+        
+        return *max_element(v.begin(),v.end());
+    }
+    
+    int lengthOfLIS(vector<int>& nums) {
+        return LIS(nums,nums.size());
+    }
+};
+
+
+
+
