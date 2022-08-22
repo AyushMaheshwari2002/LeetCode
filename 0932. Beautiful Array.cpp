@@ -15,3 +15,46 @@
 
 
 
+/* 
+Formula : for finding odd element's permutation --> 2 * element + 1
+             for finding even element's permutation --> 2 * element
+             Condition --> ans <= n
+*/
+                
+
+class Solution {
+public:
+    vector<int> beautifulArray(int n) 
+    {
+        if(n == 1)
+            return {1};
+        
+        vector<int>  ans;
+        ans.push_back(1);
+        
+        while(ans.size() < n)
+        {
+            vector<int> temp;
+            
+            // for finding odd element's permutation
+            for(auto i : ans)
+            {
+                if(2 * i - 1 <= n)
+                    temp.push_back(2 * i - 1);
+            }
+            
+            // for finding even element's permutation
+            for(auto i : ans)
+            {
+                if(2 * i <= n)
+                    temp.push_back(2 * i);
+            }
+            ans = temp;
+        }
+        return ans;
+    }
+};
+
+
+
+
