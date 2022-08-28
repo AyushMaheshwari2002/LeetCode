@@ -17,3 +17,37 @@
 
 
 
+/* Linear Approach
+b'coz of this condition : A peak element is an element that is strictly greater than its neighbors
+        there will be two possibility of peak element
+            1. It is present at first position or
+            2. it is present at last position
+
+
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) 
+    {
+        for(int i = 1; i < nums.size(); i++)
+        {
+            if(nums[i] < nums[i - 1]) 
+                return i - 1;
+        }
+        
+        return nums.size() - 1;
+    }
+};
+*/
+
+
+
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums)
+    {
+        return max_element(nums.begin(), nums.end()) - nums.begin();
+    }
+};
+
+
+
