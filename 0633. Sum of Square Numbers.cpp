@@ -12,3 +12,32 @@
 
 
 
+
+class Solution {
+public:
+    bool judgeSquareSum(int c)
+    {
+        long long int low = 0;
+        long long int high = sqrt(c);
+        
+         while(low <= high)
+         {
+             long long int check = low * low + high * high;
+             
+             if(check == c)
+                 return true;
+             
+             else if(check < c)
+                 low++;
+             
+             else
+                 high--;
+        }
+        
+        return false;
+    }
+};
+
+
+
+
