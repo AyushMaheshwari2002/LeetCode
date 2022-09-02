@@ -22,3 +22,40 @@
 
 
 
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& stones) 
+    {
+        priority_queue<int> pq;
+        
+        // push all the elements (largest element is at the top of priority queue)
+        for(int i = 0; i < stones.size(); i++)
+        {
+            pq.push(stones[i]);
+        }
+        
+        while(pq.size() > 1)
+        {
+            int y = pq.top();
+            pq.pop();
+            
+            int x = pq.top();
+            pq.pop();
+            
+            // means remove(destroy) both the elements from priority queue
+            if(x == y)
+                continue;
+            else
+                pq.push(y - x);
+        }
+        
+        if(pq.size() == 0)
+            return 0;
+        else
+            return pq.top();
+    }
+};
+
+
+
+
