@@ -33,7 +33,7 @@ public:
 		
         while(i < nums1.size() and j < nums2.size())
         {
-			if(nums1[i] <= nums2[j])
+		if(nums1[i] <= nums2[j])
             {
 				if(i <= j)
                 {
