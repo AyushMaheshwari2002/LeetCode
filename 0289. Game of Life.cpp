@@ -69,7 +69,8 @@ public:
         return ind;
     }
     
-    void gameOfLife(vector<vector<int>>& board) {
+    void gameOfLife(vector<vector<int>>& board)
+    {
         vector<vector<int> > v = board;
         
         int m = board.size();
@@ -81,19 +82,17 @@ public:
             {
                 int ind = check(v,i,j,n,m);
                 if(board[i][j] == 0)
-                   {
+                {
                        if(ind == 3)
                            board[i][j] = 1;
-                   }
+                }
                 else
-                   {
+                {
                        if(ind < 2 || ind > 3)
                            board[i][j] = 0;
-                   }
+                }
             }
-        }
-        
-        
+        }    
     }
 };
 
