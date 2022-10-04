@@ -14,3 +14,30 @@
 
 
 
+class Solution {
+public:
+    TreeNode* trimBST(TreeNode* root, int low, int high) 
+    {
+        if(root == NULL)
+            return NULL;
+        
+        // if root value is smaller than low so there is no need to go in left side
+        // because all values will be more smaller than low so we can go for right side
+        // BST GO TO RIGHT SIDE FOR VALID RANGE [low , high]
+        if(root -> val < low)
+            return trimBST(root -> right , low , high);
+        
+        // BST GO TO LEFT SIDE FOR VALID RANGE [low , high]
+        if(root -> val > high)
+            return trimBST(root -> left , low , high);
+        
+        // ONLY CASE REMAINING is ROOT lies WITHIN RANGE [low , high]
+        root -> left = trimBST(root -> left , low , high);
+        root -> right = trimBST(root -> right , low , high);
+        
+        return root;
+    }
+};
+
+
+
