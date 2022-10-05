@@ -17,3 +17,63 @@
 
 
 
+/* USING VECTOR
+class Solution {
+public:
+      vector<int> v;
+      int findSecondMinimumValue(TreeNode* root)
+      {
+          if(root == NULL) 
+              return 0;
+          
+          v.push_back(root -> val);
+          findSecondMinimumValue(root -> left);
+          findSecondMinimumValue(root -> right);
+    
+          sort(v.begin() , v.end());
+          v.erase(unique(v.begin(),v.end()) , v.end());
+          
+          if(v.size() < 2)
+              return -1;
+          
+          return v[1];
+      }
+};
+*/
+
+
+
+// USING SET
+class Solution {
+public:
+
+    void traverse(TreeNode* root , set<int> &s)
+    {
+            if(root == NULL)
+            {
+                return;
+            } 
+            
+            s.insert(root -> val);
+            traverse(root -> left , s);
+            traverse(root -> right , s);
+    }
+
+    int findSecondMinimumValue(TreeNode* root)
+    {
+        set<int> s;
+        traverse(root , s);
+
+        // check if there are atleast 2 unique nodes so that we can find second largest element
+        if(s.size() < 2)
+            return -1;
+
+        auto it = s.begin();     // points to 1st smallest element
+        it++;                    // points to 2nd smallest element
+        return *it;
+    }
+};
+
+
+
+
