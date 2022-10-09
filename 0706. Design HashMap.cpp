@@ -29,3 +29,29 @@
 
 
 
+class MyHashMap {
+public:
+    
+    vector<int> v;
+    MyHashMap() {
+        v.resize(1e6+1, -1);
+    }
+    
+    // if key exists update the value of key
+    void put(int key, int value) {
+        v[key] = value;
+    }
+    
+    // return 1 if key is present else -1
+    int get(int key) {
+        return v[key];
+    }
+    
+    // if we want to remove any key then change its value to -1
+    void remove(int key) {
+        v[key] = -1;
+    }
+};
+
+
+
