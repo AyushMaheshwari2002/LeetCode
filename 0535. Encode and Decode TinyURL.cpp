@@ -22,3 +22,30 @@
 
 
 
+class Solution {
+public:
+    
+    map<string , string> m;
+    int n = 0; 
+
+    // Encodes a URL to a shortened URL.
+    string encode(string longUrl)
+    {
+        // this will always create a unique URL
+        string res = "http://tinyurl.com/" + to_string(n);
+        n++;
+        m[res] = longUrl;
+        // this will be the shortened URL
+        return res;
+    }
+
+    // Decodes a shortened URL to its long URL.
+    string decode(string shortUrl)
+    {
+        return m[shortUrl];
+    }
+};
+
+
+
+
