@@ -2,18 +2,18 @@
     takes to travel from one station to another.
 
     Implement the UndergroundSystem class:
-    * void checkIn(int id, string stationName, int t)
-          * A customer with a card ID equal to id, checks in at the station stationName at time t.
-          * A customer can only be checked into one place at a time.
-    * void checkOut(int id, string stationName, int t)
-          * A customer with a card ID equal to id, checks out from the station stationName at time t.
-    * double getAverageTime(string startStation, string endStation)
-         * Returns the average time it takes to travel from startStation to endStation.
-         * The average time is computed from all the previous traveling times from startStation to endStation that happened directly, meaning a check in at 
-           startStation followed by a check out from endStation.
-         * The time it takes to travel from startStation to endStation may be different from the time it takes to travel from endStation to startStation.
-         * There will be at least one customer that has traveled from startStation to endStation before getAverageTime is called.
-    
+        * void checkIn(int id, string stationName, int t)
+              * A customer with a card ID equal to id, checks in at the station stationName at time t.
+              * A customer can only be checked into one place at a time.
+        * void checkOut(int id, string stationName, int t)
+              * A customer with a card ID equal to id, checks out from the station stationName at time t.
+        * double getAverageTime(string startStation, string endStation)
+             * Returns the average time it takes to travel from startStation to endStation.
+             * The average time is computed from all the previous traveling times from startStation to endStation that happened directly, meaning a check in at 
+               startStation followed by a check out from endStation.
+             * The time it takes to travel from startStation to endStation may be different from the time it takes to travel from endStation to startStation.
+             * There will be at least one customer that has traveled from startStation to endStation before getAverageTime is called.
+
     You may assume all calls to the checkIn and checkOut methods are consistent. If a customer checks in at time t1 then checks out at time t2, then t1 < t2. All 
     events happen in chronological order.
 
@@ -63,6 +63,48 @@
               undergroundSystem.checkOut(2, "Paradise", 30); // Customer 2 "Leyton" -> "Paradise" in 30-21 = 9
               undergroundSystem.getAverageTime("Leyton", "Paradise"); // return 6.66667, (5 + 6 + 9) / 3 = 6.66667
 */
+
+
+
+
+class UndergroundSystem {
+public:
+    map<int,pair<string,int>>check;
+    map<pair<string,string>,vector<int>>mp;
+    
+    UndergroundSystem() {
+        
+    }
+    
+    void checkIn(int id, string stationName, int t) 
+    {
+       check[id]={stationName,t};
+        
+    }
+    
+    void checkOut(int id, string stationName, int t)
+    {
+        pair<string,int>p=check[id];
+        mp[{p.first,stationName}].push_back(t-p.second);
+        
+    }
+    
+    double getAverageTime(string startStation, string endStation)
+    {
+        double avg=0;
+        if(mp.find({startStation,endStation})==mp.end())
+        {
+            return avg;
+        }
+        vector<int>v=mp[{startStation,endStation}];
+        for(auto x:v)
+        {
+            avg+=x;
+        }
+        return avg/v.size();     
+    }
+};
+
 
 
 
