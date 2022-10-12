@@ -16,4 +16,58 @@
 
 
 
+class Solution {
+public:
+    
+    int dis(vector<int>&point1,vector<int>&point2)
+    {
+        return abs(point1[0]-point2[0]) + abs(point1[1]-point2[1]);
+    }
+    
+    int minCostConnectPoints(vector<vector<int>> &points)
+    {
+       int n = points.size();
+        vector<int> visited(n,0);
+        vector<int> minCost(n,INT_MAX);
+        int currpoint = 0;
+        minCost[0] = 0;
+        int ans = 0;
+        
+        while(currpoint >= 0)
+        {
+            visited[currpoint] = 1;
+            int nextpoint = -1;
+            int mincurr = INT_MAX;
+            
+            for(int i = 0; i < n; i++)
+            {
+                if(visited[i] || currpoint == i)
+                {
+                    continue;
+                }
+                
+                minCost[i] = min(dis(points[currpoint],points[i]) , minCost[i]);
+                if(minCost[i] < mincurr)
+                {
+                    mincurr = minCost[i];
+                    nextpoint = i;
+                }
+            }
+            if(mincurr == INT_MAX)
+            {
+                ans += 0;
+            }
+            else
+            {
+                ans += mincurr;
+            }
+            currpoint = nextpoint;   
+        }
+        
+        return ans;
+    }
+};
+
+
+
 
