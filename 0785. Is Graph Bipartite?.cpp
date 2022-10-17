@@ -21,4 +21,49 @@
 
 
 
+class Solution {
+public:
+    
+    vector<int> vis, color;
+    
+    bool dfs(vector<vector<int>>& graph, int i , int c)
+    {
+        vis[i] = 1;
+        color[i] = c;
+        for(auto j : graph[i])
+        {
+            if(vis[j] == 0)
+            {
+                // c^1 is for changing 1 by 0 and 0 by 1
+                if(dfs(graph,j,c^1) == false) 
+                    return false;
+            }
+            else
+            {
+                if(color[i] == color[j]) 
+                    return false;
+            }
+        }
+        return true;
+    }
+    
+    bool isBipartite(vector<vector<int>>& graph) 
+    {
+        // using graph coloring algorithm
+        int n = graph.size();
+        vis.resize(n);
+        color.resize(n);
+        
+        for(int i = 0; i < n; i++)
+        {
+            if(color[i] == 0 && dfs(graph,i,0) == false) 
+                return false;
+        }
+        
+        return true;
+    }
+};
+
+
+
 
