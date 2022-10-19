@@ -20,4 +20,44 @@
 
 
 
+class Solution {
+public:
+    int largestInteger(int num)
+    {
+        string s = to_string(num);
+        
+        vector<int> odd , even;
+        
+        for(int i = 0; i < s.size(); i++)
+        {
+            if((s[i] - '0') % 2 == 0)
+                even.push_back(s[i] - '0');
+            
+            else
+                odd.push_back(s[i] - '0');
+        }
+        
+        sort(odd.begin(),odd.end());
+        reverse(odd.begin(),odd.end());
+        
+        sort(even.begin(),even.end());
+        reverse(even.begin(),even.end());
+        
+        int i = 0;
+        int j = 0;
+        int ans = 0;
+        
+        for(auto k : s)
+        {
+            if((k - '0') % 2 != 0)
+                ans = ans * 10 + odd[i++];
+            else
+                ans = ans * 10 + even[j++];
+        }
+        
+        return ans;    
+    }
+};
+
+
 
