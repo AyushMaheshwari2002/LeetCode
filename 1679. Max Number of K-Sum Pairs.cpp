@@ -21,3 +21,36 @@
 
 
 
+class Solution {
+public:
+    int maxOperations(vector<int>& num, int k)
+    {
+        sort(num.begin(), num.end());
+        
+        int count = 0;
+        int start = 0, end = num.size()-1;
+    
+        while(start < end)
+        {
+            if(num[start] + num[end] == k)
+            {    
+                // element found increase the count value
+                count++; 
+                start++; 
+                end--;
+            } 
+            
+		    else if(num[start] + num[end] > k) 
+                end--;                    // if sum is larger than k then decrease the "end" pointer
+            
+            else 
+                start++;                 // if sum is smaller than k then increase the "start" pointer
+        }
+        
+        return count;
+    }
+};
+
+
+
+
