@@ -23,4 +23,29 @@
 
 
 
+class Solution {
+public:
+    string removeDuplicates(string s, int k)
+    {
+        stack<int> cnt;
+        
+        for(int i = 0; i < s.size(); i++)
+        {
+            if(i == 0 || s[i] != s[i-1])
+                cnt.push(1);
+            
+            else if(++cnt.top() == k)
+            {
+                cnt.pop();
+                s.erase(i - k + 1 , k);
+                i = i - k;
+            }
+        }
+        
+        return s;
+    }
+};
+
+
+
 
