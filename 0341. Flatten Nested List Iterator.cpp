@@ -28,4 +28,41 @@
 
 
 
+class NestedIterator {
+public:
+    
+    vector<int> v;
+    int pos = 0;
+    
+    void helper(vector<NestedInteger> &nestedList)
+    {
+        for(int i = 0; i < nestedList.size(); i++)
+        {
+            if(nestedList[i].isInteger())
+                v.push_back(nestedList[i].getInteger());
+            
+            else
+                helper(nestedList[i].getList());
+        }
+    }
+    
+    NestedIterator(vector<NestedInteger> &nestedList) 
+    {
+        helper(nestedList);
+    }
+    
+    int next() {
+        return v[pos++];
+    }
+    
+    bool hasNext() {
+        if(pos < v.size())
+            return true;
+        else
+            return false;
+    }
+};
+
+
+
 
