@@ -28,4 +28,34 @@
 
 
 
+class Solution {
+public:
+    
+    void helper(vector<vector<int>>& res, vector<int>& v, int k, int n, int start)
+    {
+        if(k == v.size())
+        {
+            if(n == 0) 
+                res.push_back(v);
+            return;
+        }
+        for(int i = start; i <= 9; i++)
+        {
+            v.push_back(i);
+            helper(res, v, k, n-i, i+1);
+            v.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum3(int k, int n)
+    {
+        vector<vector<int>> res;
+        vector<int> v;
+        
+        helper(res, v, k, n, 1);
+        
+        return res;
+    }
+};
+
+
 
