@@ -24,4 +24,49 @@
 
 
 
+class Solution {
+public:
+
+    void Sum(vector<int> &candidates, int target, vector<vector<int>> & res, vector<int> &r, int idx)
+    { 
+        if(target == 0)
+        {
+            // if we get exact answer
+            res.push_back(r);
+            return;
+        }
+        
+        for(int i = idx; i < candidates.size(); i++)
+        {
+            if(i > idx && candidates[i] == candidates[i-1])
+                continue;
+            
+            if(candidates[i] > target)
+                break;
+            
+            r.push_back(candidates[i]);                  // add them to vector
+            
+            // recursive call for next numbers
+            Sum(candidates , target - candidates[i] , res , r , i+1);
+            
+            // Remove number from vector (backtracking)
+            r.pop_back();
+        }
+}
+    
+     
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) 
+    {
+        sort(candidates.begin(),candidates.end());                  // sort candidates array
+                
+        vector<int> r;
+        vector<vector<int>> res;
+        
+        Sum(candidates , target , res , r , 0);
+        
+        return res;
+    }
+};
+
+
 
