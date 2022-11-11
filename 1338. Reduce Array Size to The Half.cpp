@@ -16,4 +16,41 @@
 
 
 
+class Solution {
+public:
+    int minSetSize(vector<int>& arr)
+    {
+        map<int,int>m;
+        
+        for(int i = 0; i < arr.size(); i++)
+        {
+            m[arr[i]]++;
+        }
+        
+        vector<int> v;
+        for(auto i : m)
+        {
+            v.push_back(i.second);
+        }
+        
+        sort(v.rbegin(),v.rend());
+        int count = 0;
+        int sum = 0;
+        
+        for(int i = 0; i < v.size(); i++)
+        {
+            sum += v[i];
+            count++;
+            
+            if(sum >= arr.size()/2)
+            {
+                break;
+            }
+        }
+        
+        return count;
+    }
+};
+
+
 
