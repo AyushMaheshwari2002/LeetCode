@@ -31,13 +31,16 @@ public:
         
         vector<int> lis;
         
-        for(int i = 0;i<env.size();i++){
+        for(int i = 0;i<env.size();i++)
+        {
             int ele = env[i][1];
             
             int idx = lower_bound(lis.begin(), lis.end(), ele) - lis.begin();
             
-            if(idx >= lis.size()) lis.push_back(ele);
-            else lis[idx] = ele;
+            if(idx >= lis.size()) 
+                lis.push_back(ele);
+            else 
+                lis[idx] = ele;
         }
         
         return lis.size();
