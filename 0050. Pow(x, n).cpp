@@ -16,3 +16,38 @@
 
 
 
+class Solution {
+public:
+    
+    double solve(double x, long n)
+    {
+        if(n == 0)
+            return 1.0;
+        
+        if(n == 1)
+            return x;
+        
+        if(n < 0)
+            return solve(1/x , -n);
+        
+        // if n is even 
+        double res = solve(x * x, n/2);
+        
+        // if n is odd then again multiply the number by n 
+        if(n % 2 != 0)
+        {
+            res *= x;
+        }
+        
+        return res;
+    }
+    
+    
+    double myPow(double x, int n) 
+    {
+        return solve(x , n);
+    }
+};
+
+
+
