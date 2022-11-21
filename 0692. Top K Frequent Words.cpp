@@ -15,4 +15,44 @@
 
 
 
+class Solution {
+public:
+    bool static compare(pair<int , string> a , pair<int , string> b)
+    {
+        // if frequencies are same then arrange in lexicographical order
+        if(a.first == b.first)
+            return a.second < b.second;
+        
+        return a.first > b.first;
+    }
+    
+    vector<string> topKFrequent(vector<string>& words, int k) 
+    {
+        map<string , int> m;
+        
+        for(int i = 0; i < words.size(); i++)
+            m[words[i]]++;
+        
+        vector<pair<int , string>> v;
+        for(auto i : m)
+        {
+            // in vector we have first store the frequency then no. b'coz we have to sort the vector on the basis of increasing frequency
+            v.push_back({i.second , i.first});   
+        }
+        
+        sort(v.begin() , v.end() , compare);
+        
+        vector<string> ans;
+        for(int i = 0; i < k; i++)
+        {
+            ans.push_back(v[i].second);
+        }
+        
+        return ans;
+        
+    }
+};
+
+
+
 
