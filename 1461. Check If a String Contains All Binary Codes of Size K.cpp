@@ -18,3 +18,23 @@
 
 
 
+class Solution {
+public:
+    bool hasAllCodes(string s, int k) 
+    {   
+        if(s.size() < k)
+            return false;
+        
+        set<string> ans;
+        
+        for(int i = 0; i <= s.size()-k; i++)
+        {
+            ans.insert(s.substr(i,k));
+        }
+        
+        return (ans.size() == pow(2,k));
+    }
+};
+
+
+
