@@ -22,3 +22,48 @@
 
 
 
+class Solution {
+public:
+    void BFS(vector<vector<int>> &rooms, vector<int> &visited, int source)
+    {
+        queue<int> q;
+        q.push(source);
+        visited[source] = 1;
+    
+        while(!q.empty())
+        {
+            int node = q.front();
+            q.pop();
+            
+            for(auto it : rooms[node])
+            {
+                if(!visited[it])
+                {
+                    q.push(it);
+                    visited[it] = 1;
+                }
+            }
+        }
+    }
+    
+    bool canVisitAllRooms(vector<vector<int>>& rooms) 
+    {
+        int n = rooms.size();
+        vector<int> visited(n , 0);
+        
+        BFS(rooms , visited , 0);
+        
+        // if there is any node which is not visited then return false
+        for(int i = 0; i < visited.size(); i++)
+        {
+            if(!visited[i]) 
+                return false;
+        }
+        
+        return true;
+    }
+};
+
+
+
+
