@@ -15,3 +15,36 @@
 */
 
 
+
+
+class Solution {
+public:
+    int maximumUniqueSubarray(vector<int>& nums)
+    {
+        int i = 0 , start = 0;
+        unordered_map<int,int> m;
+        int tempSum = 0 , ans = 0;
+        
+        while(start < nums.size())
+        {
+            if(m[nums[start]] == 0)
+            {
+                m[nums[start]]++;
+                tempSum += nums[start];
+                start++;
+            }
+            else {
+				m[nums[i]]--;
+                tempSum -= nums[i];
+                i++;
+            }
+				
+            ans = max(ans , tempSum);
+        }
+        
+        return ans;
+    }
+};
+
+
+
