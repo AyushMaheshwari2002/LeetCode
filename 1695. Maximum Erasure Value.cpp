@@ -34,7 +34,7 @@ public:
                 start++;
             }
             else {
-				m[nums[i]]--;
+		m[nums[i]]--;
                 tempSum -= nums[i];
                 i++;
             }
