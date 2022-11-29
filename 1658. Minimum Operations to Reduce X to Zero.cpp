@@ -19,3 +19,42 @@
 
 
 
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int x) {
+        int tot = 0;
+        
+        for(int i : nums)
+            tot += i;
+        
+        int n = nums.size();
+        
+        if(tot == x)
+            return n;
+        
+        int ind = tot - x;
+        
+        int i = 0, j = 0, sum = 0, ans = 0;
+        
+        while(j < n)
+        {
+            sum += nums[j];
+            
+            while(i < j && sum > ind)
+                sum -= nums[i++];
+            if(sum == ind)
+                ans = max(ans, j - i + 1);
+                          
+            ++j;
+        }
+                          
+        if(ans == 0)
+            return -1;
+        else
+            return n - ans;
+    }
+};
+
+
+
+
