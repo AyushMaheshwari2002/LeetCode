@@ -14,3 +14,63 @@
 
 
 
+class Solution {
+public:
+	int secondHighest(string s) 
+    {
+		set<int> st;
+        
+		for(auto i : s)
+        {
+			if(isdigit(i))
+            {
+				st.insert(i - '0');
+			}
+		}
+        
+        vector<int> v;
+        for(auto i : st)
+            v.push_back(i);
+        
+        sort(v.rbegin() , v.rend());
+        
+		if(st.size() < 2)
+			return -1;
+        	
+        return v[1];
+	}
+};
+
+
+
+/*
+class Solution {
+public:
+	int secondHighest(string s) 
+    {
+		set<int> st;
+        
+		for(auto i : s)
+        {
+			if(isdigit(i))
+            {
+				st.insert(i - '0');
+			}
+		}
+        
+		if(st.size() < 2)
+			return -1;
+        
+		else {
+			auto it = st.end();
+			it--;
+			it--;
+			
+            return *it;
+		}
+	}
+};
+*/
+
+
+
