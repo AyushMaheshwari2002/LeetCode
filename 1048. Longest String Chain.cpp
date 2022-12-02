@@ -25,4 +25,39 @@
 
 
 
+class Solution {
+public:
+    
+    static bool comp(string &a , string &b)
+    {
+        return a.length() < b.length();
+    }
+    
+    int longestStrChain(vector<string>& words)
+    {
+        int ans = 0;
+        unordered_map<string,int> m;
+        
+        sort(words.begin(),words.end(), comp);
+        
+        for(auto word : words)
+        {
+            for(int i = 0; i < word.length(); i++)
+            {
+                // if word = "bca" predecessor are "ca , ba , bc"
+                string predecessor = word.substr(0,i) + word.substr(i+1);
+                
+                // then check these predecessors exists in the map if exists then add 1
+                m[word] = max(m[word] , m[predecessor] + 1);
+                
+            }
+            
+            ans = max(ans , m[word]);
+        }
+        
+        return ans;
+    }
+};
+
+
 
