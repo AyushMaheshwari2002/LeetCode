@@ -21,4 +21,33 @@
 
 
 
+class Solution {
+public:
+    int minimumLengthEncoding(vector<string>& words)
+    {
+        unordered_set<string> s(words.begin() , words.end());
+        
+        for(auto word : s)
+        {
+            // the will create substrings from index 1
+            // like time = ime , me , e and bell = ell , ll , l
+            // then then if it found any substring in set then erase thet string
+            for(int i = 1; i < word.length(); i++)
+            {
+                s.erase(word.substr(i));
+            }
+        }
+        
+        // then find the length of characters which are left in set
+        int ans = 0;
+        
+        for(auto i : s)
+            ans += i.length() + 1;        // +1 is for "#" symbol
+        
+        return ans;
+    }
+};
+
+
+
 
