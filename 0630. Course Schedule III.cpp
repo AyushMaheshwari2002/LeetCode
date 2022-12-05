@@ -24,3 +24,40 @@
 
 
 
+class Solution {
+public:
+    
+    bool static cmp(vector<int> &a , vector<int> &b)
+    {
+        return a[1] < b[1];
+    }
+    
+    int scheduleCourse(vector<vector<int>>& courses) 
+    {
+        sort(courses.begin(),courses.end(),cmp);
+                
+        if(courses.size() <= 0) 
+            return 0;
+        
+        priority_queue<int> pq;
+        int ans = 0;
+        
+        for(auto i : courses) 
+        {
+            ans += i[0];
+            pq.push(i[0]);
+            
+            if(ans > i[1]) 
+            {
+                ans -= pq.top();
+                pq.pop();
+            }
+        }
+        
+        return pq.size();
+        
+    }
+};
+
+
+
