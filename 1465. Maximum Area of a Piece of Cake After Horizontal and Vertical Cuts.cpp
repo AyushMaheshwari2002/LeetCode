@@ -24,3 +24,36 @@
 
 
 
+class Solution {
+public:
+    int maxArea(int h, int w, vector<int>& horizontalCuts, vector<int>& verticalCuts) {
+        
+        int hmax = 0;
+        int vmax = 0;
+        
+        horizontalCuts.push_back(0);
+        horizontalCuts.push_back(h);
+        
+        verticalCuts.push_back(0);
+        verticalCuts.push_back(w);
+        
+        sort(horizontalCuts.begin(),horizontalCuts.end());
+        sort(verticalCuts.begin(),verticalCuts.end());
+        
+        for(int i = 1; i < horizontalCuts.size(); i++)
+        {
+            hmax = max(hmax , horizontalCuts[i] - horizontalCuts[i-1]);
+        }
+        
+        for(int i = 1; i < verticalCuts.size(); i++)
+        {
+            vmax = max(vmax , verticalCuts[i] - verticalCuts[i-1]);
+        }
+        
+        return (1LL * vmax * hmax) % (1000000007);     //1LL used to make the product long long or integer sign overflow will occur.
+
+    }
+};
+
+
+
