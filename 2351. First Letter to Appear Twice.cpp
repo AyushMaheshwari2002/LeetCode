@@ -23,3 +23,25 @@
 
 
 
+class Solution {
+public:
+    char repeatedCharacter(string s)
+    {
+        set<int> st;
+        
+        for(auto i : s)
+        {
+            if(st.find(i) == st.end())          // if element is not present in set
+                st.insert(i);
+            
+            else                // if element is present in set and appears second time then return it 
+                return i;
+        }
+        
+        return 'a';            // useless not needed just for completing the code
+    }
+};
+
+
+
+
