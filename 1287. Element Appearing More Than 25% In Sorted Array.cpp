@@ -11,3 +11,25 @@
 
 
 
+class Solution {
+public:
+    int findSpecialInteger(vector<int>& arr)
+    {
+        unordered_map<int,int> m;
+        
+        for(auto i : arr)
+            m[i]++;
+        
+        for(auto i : m)
+        {
+            if(i.second > (arr.size()/4))
+                return i.first;
+        }
+        
+        return arr[0];         // Useless line just for complete the code
+    }
+};
+
+
+
+
