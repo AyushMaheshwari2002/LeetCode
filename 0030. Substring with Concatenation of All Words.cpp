@@ -30,3 +30,97 @@
 
 
 
+class Solution {
+public:
+    vector<int> findSubstring(string s, vector<string>& words) 
+    {
+        int n = words.size() , m = words[0].size();
+        int len = words.size() * words[0].size();
+        
+        vector<int> res;
+        unordered_map<string,int> wordCount;
+        
+        // base case
+        if(s.length() < n * m)
+            return {};
+        
+        for(auto i : words)
+            wordCount[i]++;
+        
+        for(int i = 0; i <= s.length() - len; i++)
+        {
+            unordered_map<string,int> sCount;
+            
+            // creating substrings of size 3 for matching 
+            for(int j = i; j < i + len; j += words[0].size())
+            {
+                string cur = s.substr(j , m);                   // make a string of size 3 from s 
+                
+                // if string is found in wordCount map then increase its count in sCount map
+                // else break the loop no need to check further
+                if(wordCount.find(cur) != wordCount.end())
+                    sCount[cur]++;
+                else
+                    break;
+                
+                if(sCount[cur] > wordCount[cur])
+                    break;
+            }
+            
+            if(sCount == wordCount)
+                res.push_back(i);
+        }
+        
+        return res;
+    }
+};
+
+
+
+
+/*     Naive Approach (Gives TLE)
+class Solution {
+public:
+    vector<int> findSubstring(string s, vector<string>& words) 
+    {
+        // base case
+        if(words.size() == 0 || (s.size() < words.size() * words[0].size()))
+            return {};
+        
+        // store all the possible permutations of word string in vector v
+        vector<string> v;
+        sort(words.begin(),words.end());
+        
+        do {
+            string temp;
+            for(auto i : words)
+                temp += i;
+            
+            v.push_back(temp);
+        }while(next_permutation(words.begin(),words.end()));
+        
+        int len = v[0].size();
+        vector<int> res;
+        
+        // creating a substring of length len and check that substring is present in s or not
+        // if present then store the starting index of substring in vector res 
+        for(int i = 0; i <= s.length() - len; i++)
+        {
+            string cur = s.substr(i,len);
+        
+            for(auto a : v)
+            {
+                if(a == cur)
+                    res.push_back(i);
+            }
+        }
+        
+        return res;
+    }
+};
+*/
+
+
+
+
+
