@@ -14,3 +14,37 @@
 
 
 
+class Solution {
+public:
+    int longestPalindrome(string s) 
+    {
+        int ans = 0;
+        unordered_map<char,int> m;
+        
+        for(auto i : s)
+            m[i]++;
+        
+        int odd_found = 0;
+        for(auto i : m)
+        {
+            // if there is an even length palindrome
+            if(i.second % 2 == 0)
+                ans += i.second;
+            
+            else {
+                // if there is an odd length palindrome
+                odd_found = 1;
+                ans += i.second - 1;
+            }
+        }
+        
+        if(odd_found == 1)
+            ans++;
+        
+        return ans;
+    }
+};
+
+
+
+
