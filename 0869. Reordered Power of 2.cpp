@@ -12,4 +12,39 @@
 
 
 
+class Solution {
+public:
+    
+    multiset<int> helper(int n)
+    {
+        multiset<int> s;
+        
+        while(n>0)
+        {
+            s.insert(n%10);
+            n/=10;
+        }
+        return s;
+    }
+    
+    bool reorderedPowerOf2(int n) 
+    {    
+        multiset<int> s;
+        
+        while(n>0)
+        {
+            s.insert(n%10);
+            n/=10;
+        }
+        
+        for(int i =0 ;i<32; ++i){
+            int value = (1<<i);
+            if(helper(value) == s)
+                return true;
+        }
+        return false;
+    }
+};
+
+
 
