@@ -7,7 +7,6 @@
     A Sudoku board (partially filled) could be valid but is not necessarily solvable.
     Only the filled cells need to be validated according to the mentioned rules.
 
-
                 Example 1:
                         Input: board = 
                         [["5","3",".",".","7",".",".",".","."]
@@ -38,6 +37,37 @@
                         Explanation: Same as Example 1, except with the 5 in the top left corner being modified to 8. Since there are two 8's in the top left 3x3
                         sub-box, it is invalid.
 */
+
+
+
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) 
+    {
+        vector<set<int>> row(9);
+        vector<set<int>> col(9);
+        vector<set<int>> block(9);
+        
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                if(board[i][j] == '.')
+                    continue;
+                
+                int val = board[i][j] - '0';
+                if(row[i].count(val) == 1|| col[j].count(val) == 1 || block[(i/3)*3+j/3].count(val) == 1)
+                    return false;
+                
+                row[i].insert(val);
+                col[j].insert(val);
+                block[(i/3)*3 + j/3].insert(val);         
+            }
+        }
+        
+        return true;
+    }
+};
 
 
 
