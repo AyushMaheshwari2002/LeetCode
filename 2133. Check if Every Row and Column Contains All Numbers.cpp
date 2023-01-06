@@ -16,3 +16,38 @@
 
 
 
+class Solution {
+public:
+    bool checkValid(vector<vector<int>>& matrix)
+    {
+        int n = matrix.size();
+        unordered_set<int> row(n) , col(n);
+        
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                if(row.find(matrix[i][j]) != row.end())
+                    return false;
+                
+                else
+                    row.insert(matrix[i][j]);
+                
+                if(col.find(matrix[j][i]) != col.end())
+                    return false;
+                
+                else
+                    col.insert(matrix[j][i]);
+            }
+            
+            row.clear();
+            col.clear();
+        }
+        
+        return true;
+    }
+};
+
+
+
+
