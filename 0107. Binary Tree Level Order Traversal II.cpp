@@ -14,3 +14,46 @@
 */
 
 
+
+class Solution {
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode* root)
+    {
+        vector<vector<int>> result;
+        
+        if(root == NULL)
+            return result;
+        
+        queue<TreeNode*> Q;
+        Q.push(root);
+        
+        while(!Q.empty())
+        {
+            int size = Q.size();
+            
+            vector<int> level;
+            
+            for(int i = 0; i < size; i++) 
+            { 
+                TreeNode *node = Q.front();
+                Q.pop();
+            
+                if(node -> left != NULL)
+                    Q.push(node -> left);
+                
+                if(node -> right != NULL)
+                    Q.push(node -> right);
+            
+                level.push_back(node -> val);
+            }
+            result.push_back(level);
+        }
+        
+        reverse(result.begin(),result.end());
+        return result;
+    }
+};
+
+
+
+
