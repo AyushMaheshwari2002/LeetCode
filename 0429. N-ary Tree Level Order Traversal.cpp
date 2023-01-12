@@ -12,3 +12,41 @@
 
 
 
+class Solution {
+public:
+    vector<vector<int>> levelOrder(Node* root)
+    {
+        if(root == NULL) 
+            return {};
+        
+        vector<vector<int>> ans;
+        
+        queue<Node*> q;
+        q.push(root);
+        
+        while(!q.empty())
+        {
+            int size = q.size();
+            vector<int> v;
+            
+            for(int i = 0; i < size; i++)
+            {
+                Node* node = q.front();
+                q.pop();
+
+                v.push_back(node->val);
+
+                // push the other childrens of root in queue
+                for(auto i : node -> children)
+                    q.push(i);
+            }
+        
+            ans.push_back(v);
+        }
+        
+        return ans;
+    }
+};
+
+
+
