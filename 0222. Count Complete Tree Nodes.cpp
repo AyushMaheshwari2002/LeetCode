@@ -19,3 +19,105 @@
 
 
 
+// Using QUEUE O((NlogN)^2)
+class Solution {
+public:
+    int countNodes(TreeNode* root)
+    {
+        int count = 0;
+
+        if(root == NULL)
+            return 0;
+
+        queue<TreeNode*> q;
+        q.push(root);
+
+        while(!q.empty())
+        {
+            TreeNode* node = q.front();
+            q.pop();
+
+            if(node -> left != NULL) {
+                count++;
+                q.push(node -> left);
+            }
+
+            if(node -> right != NULL) {
+                count++;
+                q.push(node -> right);
+            }
+        }
+
+        return count+1;       // +1 is for root node
+    }
+};
+
+
+
+
+/* TC : O(N)
+class Solution {
+public:
+    int count = 0;
+
+    void solve(TreeNode* root)
+    {
+        if(root != NULL)
+            count++;
+
+        if(root -> left != NULL)
+            solve(root -> left);
+
+        if(root -> right != NULL)
+            solve(root -> right);
+    }
+
+    int countNodes(TreeNode* root)
+    {
+        if(root == NULL)
+            return 0;
+
+        solve(root);
+
+        return count;
+    }
+};
+
+
+
+
+//  TC : O(N)
+class Solution {
+public:
+    int count = 0;
+
+    int solve(TreeNode* root)
+    {
+        if(root == NULL)
+            return 0;
+
+        if(root -> left != NULL)
+            count++;
+            solve(root -> left);
+
+        if(root -> right != NULL)
+            count++;
+            solve(root -> right);
+
+        return count;
+    }
+
+    int countNodes(TreeNode* root)
+    {
+        if(root == NULL)
+            return 0;
+
+        solve(root);
+
+        return count+1;
+    }
+};
+*/
+
+
+
