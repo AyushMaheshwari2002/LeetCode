@@ -19,3 +19,25 @@
 
 
 
+class Solution {
+public:
+    TreeNode* pruneTree(TreeNode* root) 
+    {
+        if(root == NULL)
+            return root;
+        
+        root -> left = pruneTree(root -> left);
+        root -> right = pruneTree(root -> right);
+        
+        if(root->left == NULL && root->right == NULL && root->val == 0)     //if root->val is 0, then check if it's 
+        {                                                                   //leftSubtree and rightSubtree exists or not
+            return NULL;                                                    //if not return NULL
+        }
+        
+        return root;            
+    }
+};
+
+
+
+
