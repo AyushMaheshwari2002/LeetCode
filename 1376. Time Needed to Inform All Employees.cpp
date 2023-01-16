@@ -21,3 +21,35 @@
 
 
 
+class Solution {
+public:
+    int numOfMinutes(int n, int headID, vector<int>& manager, vector<int>& informTime) 
+    {
+        // Step1 : make a adjacency list 
+        vector<int> adjList[n];
+        
+        for(int i = 0; i < n; i++)
+        {
+            if(manager[i] == -1)
+                continue;
+            
+            adjList[manager[i]].push_back(i);
+        }
+        
+        return dfs(adjList, headID, informTime);
+    }
+    
+    int dfs(vector<int> adjList[], int headID, vector<int>& informTime)
+    {
+        int ans = 0;
+        
+        for(auto employee : adjList[headID])
+            ans = max(ans , dfs(adjList, employee, informTime));
+        
+        return ans + informTime[headID];
+    }
+};
+
+
+
+
