@@ -11,3 +11,32 @@
 
 
 
+class Solution {
+public:
+    
+    vector<int> v;
+    
+    int minDiffInBST(TreeNode* root) 
+    {
+        // inorder is always in ascending order
+        if(root != NULL)
+        {
+            minDiffInBST(root->left);
+            v.push_back(root->val);
+            minDiffInBST(root->right);
+        }
+        
+        int ans = INT_MAX;
+        
+        for(int i = 1; i < v.size(); i++)
+        {
+            ans = min(ans, abs(v[i]-v[i-1]));
+        }
+        
+        return ans;
+    }
+};
+
+
+
+
