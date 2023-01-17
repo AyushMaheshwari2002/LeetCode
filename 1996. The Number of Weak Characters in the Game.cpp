@@ -22,3 +22,37 @@
 
 
 
+class Solution {
+public:
+    
+    bool static compare(vector<int> &a, vector<int> &b)
+    {
+        if(a[0] == b[0])
+        {
+            return a[1] > b[1];    //[5,9], [5,5], [5,3], [5,2]
+        }
+        return a[0] < b[0];        //[2,5], [3,8], [6,3], [9,1]
+    }
+    
+    int numberOfWeakCharacters(vector<vector<int>>& properties) 
+    {
+        sort(properties.begin(), properties.end(), compare);
+        
+        int ans = 0;
+        int defence_val = 0;
+        
+        for(int i = properties.size()-1; i >= 0; i--)
+        {
+            if(defence_val > properties[i][1])          // if second parameter is less then
+                ans++;
+            else
+                defence_val = max(defence_val, properties[i][1]);
+        }
+        
+        return ans;
+    }
+};
+
+
+
+
