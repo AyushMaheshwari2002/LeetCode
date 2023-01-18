@@ -20,3 +20,34 @@
 */
 
 
+
+class Solution {
+public:
+      
+    int mostFrequentEven(vector<int>& nums) 
+    {
+        map<int,int> m;
+            
+        for(int i : nums)
+        {
+            if(i % 2 == 0)
+                m[i]++;    
+        }
+            
+        int ans = -1, mx = -1; 
+            
+        for(auto i: m)
+        {
+            if(i.second > mx)
+            {
+                ans = i.first;
+                mx = i.second;
+            }
+        }
+        
+        return ans;
+    }
+};
+
+
+
