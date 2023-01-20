@@ -18,3 +18,31 @@
 */
 
 
+
+class Solution {
+public:
+    int partitionString(string s)
+    {
+        set<int> st;
+        int ans = 1;
+        
+        for(int i = 0; i < s.length(); i++)
+        {
+            // insert till we find duplicate element
+            if(st.find(s[i]) == st.end())
+                st.insert(s[i]);
+            
+            else {                   // if we find duplicate then clear the set and start a new substring
+                ans++;
+                st.clear();
+                st.insert(s[i]);
+            }
+        }
+        
+        return ans;
+    }
+};
+
+
+
+
