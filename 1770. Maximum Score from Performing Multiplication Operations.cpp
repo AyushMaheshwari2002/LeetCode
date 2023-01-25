@@ -29,3 +29,32 @@
 
 
 
+class Solution {
+public:
+    vector<vector<int>> dp;
+   int helper(int index, vector<int>& nums, vector<int>& multipliers, int start, int n)
+    {
+        if(dp[index][start] != INT_MIN)
+            return dp[index][start];
+        if(index == multipliers.size())
+            return 0;
+        
+        return dp[index][start] = max(nums[start] * multipliers[index] + helper(index + 1, nums,multipliers,start+1,n), 
+                                      nums[(n-1)- (index- start)]*multipliers[index] + helper(index+1,nums,multipliers,start,n));
+    }
+    
+    
+    int maximumScore(vector<int>& nums, vector<int>& multipliers) 
+    {
+        int n = nums.size();
+        int m = multipliers.size();
+        
+        dp.resize(m+1,vector<int>(m+1,INT_MIN));
+        
+        return helper(0,nums,multipliers,0,n);
+    }
+};
+
+
+
+
