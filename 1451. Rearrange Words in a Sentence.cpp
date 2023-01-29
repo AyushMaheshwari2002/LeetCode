@@ -28,4 +28,38 @@
 
 
 
+class Solution {
+public:
+    string arrangeWords(string text) 
+    {
+        text[0] = tolower(text[0]);      // convert 1st letter into lowercase
+        
+        map<int,vector<string>> m;
+    
+        for(int i = 0; i < text.size(); i++)
+        {
+            string str = "";
+            while(i < text.length() && text[i] != ' ')
+            {
+                str += text[i++];
+            }
+            m[str.length()].push_back(str);
+        }
+        
+        string ans = "";
+        for(auto i : m)               // map will be in sorted order automatically
+        {
+            for(auto s : i.second)
+                ans += s + " ";
+        }
+        
+        ans[0] = toupper(ans[0]);        // convert 1st alphabet into uppercase
+        ans.pop_back();                  // remove last added extra space
+        
+        return ans;
+    }
+};
+
+
+
 
