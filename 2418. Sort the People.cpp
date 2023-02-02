@@ -15,3 +15,50 @@
 
 
 
+// USING PAIR
+class Solution {
+public:
+    vector<string> sortPeople(vector<string>& names, vector<int>& heights) 
+    {
+        vector<pair<int,string>> v;    
+        
+        for(int i = 0; i < names.size(); i++)
+        {
+            v.push_back({heights[i],names[i]});
+        }
+        
+        sort(v.rbegin(),v.rend());       
+        
+        vector<string> ans;
+        for(auto i : v)
+            ans.push_back(i.second);
+        
+        return ans;
+    }
+};
+
+
+
+/* USING MAP
+class Solution {
+public:
+    vector<string> sortPeople(vector<string>& names, vector<int>& heights) 
+    {
+        vector<string> v;
+        map<int, string> m;
+        
+        for(int i = 0; i < names.size(); i++)
+        {
+            m[heights[i]] = names[i];
+        }
+        
+        for(auto it = m.rbegin(); it != m.rend(); it++)                   
+            v.push_back(it->second);
+        
+        return v;
+    }
+};
+*/
+
+
+
