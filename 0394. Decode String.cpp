@@ -20,3 +20,102 @@
 
 
 
+// USING TWO STACK
+class Solution {
+public:
+    string decodeString(string s)
+    {
+        stack<string> st;
+        stack<int> num;
+        
+        string str;
+        int n = 0;
+        
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(isdigit(s[i]))
+            {
+                n = n * 10 + s[i] - '0';
+            }
+            else if(isalpha(s[i]))
+            {
+                str += s[i];
+            }
+            else if(s[i] == '[')
+            {
+                num.push(n);
+                st.push(str);
+                str = "";
+                n = 0;
+            }
+            else if(s[i] == ']')
+            {
+                int times = num.top();
+                num.pop();
+                
+                string a = st.top();
+                st.pop();
+                
+                for(int i = 0; i < times; i++)
+                {
+                    a += str;
+                }
+                str = a;
+            }
+        }
+        return str;
+    }
+};
+
+
+
+
+/* USING SINGLE STACK
+class Solution {
+public:
+    string decodeString(string s) 
+    {
+        stack<string> st;
+        string str = "";
+        string n = "";
+        
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(isdigit(s[i])) {
+                n += s[i];
+            }
+            
+            else if(isalpha(s[i]))
+                str += s[i];
+            
+            else if(s[i] == '[') {
+                st.push(str);
+                st.push(n);
+                str = "";
+                n = "";
+            }
+            
+            else if(s[i] == ']')
+            {   
+                int times = stoi(st.top());
+                st.pop();
+                
+                string curr_str = st.top();
+                st.pop();
+                
+                for(int i = 0; i < times; i++)
+                {
+                    curr_str += str;
+                }
+                str = curr_str;
+            }
+        }
+        
+        return str;
+    }
+};
+*/
+
+
+
+
