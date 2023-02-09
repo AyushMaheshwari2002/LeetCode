@@ -14,3 +14,64 @@
 
 
 
+// USING PRIORITY QUEUE
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x)
+    {
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        // priority_queue<pair<int,int>> pq;
+        
+        for(int i = 0; i < arr.size(); i++)
+        {
+            pq.push(make_pair(abs(x-arr[i]),arr[i]));
+            
+            /*
+            if(pq.size() > k)
+                pq.pop();
+            */
+        }
+        
+        vector<int> ans;
+        for(int i = 0; i < k; i++)
+        {
+            ans.push_back(pq.top().second);
+            pq.pop();
+        }
+        sort(ans.begin(),ans.end());
+        
+        return ans;
+    }
+};
+
+
+
+/* USING VECTOR PAIR 
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x)
+    {
+        vector<pair<int,int>> v;
+        vector<int> ans;
+        
+        for(int i = 0; i < arr.size(); i++)
+        {
+            v.push_back({abs(arr[i]-x),arr[i]});
+        }
+        
+        sort(v.begin(),v.end());
+        
+        for(int i = 0; i < k; i++)
+        {
+            ans.push_back(v[i].second);
+        }
+        
+        sort(ans.begin(),ans.end());
+        
+        return ans;
+    }
+};
+*/
+
+
+
