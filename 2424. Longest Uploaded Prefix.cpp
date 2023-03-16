@@ -27,3 +27,29 @@
 */
 
 
+
+class LUPrefix {
+public:
+    
+    vector<int> v;
+    int cnt = 0;
+    
+    LUPrefix(int n) {
+        v.resize(n,0);
+    }
+    
+    void upload(int video) 
+    {
+        v[video-1] = 1;
+    }
+    
+    int longest()
+    {
+        while(cnt < v.size() && v[cnt] == 1)
+            cnt++;
+        return cnt;
+    }
+};
+
+
+
