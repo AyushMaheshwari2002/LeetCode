@@ -16,3 +16,40 @@
 
 
 
+// Direction Array Approach
+
+class Solution {
+public:
+    int maxSum(vector<vector<int>>& grid) 
+    {
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        int ans = 0;
+        
+        int dx[7] = {-1,-1,-1,0,1,1,1};   // x co-ordinates
+        int dy[7] = {-1,0,1,0,-1,0,1};    // y co-ordinates
+        
+        for(int i = 1; i < n-1; i++)
+        {
+            for(int j = 1; j < m-1; j++)
+            {
+                int sum = 0;
+                for(int k = 0; k < 7; k++)
+                {
+                    int x = i + dx[k];
+                    int y = j + dy[k];
+                    
+                    sum += grid[x][y];
+                }
+                
+                ans = max(sum , ans);
+            }
+        }
+        
+        return ans;
+    }
+};
+
+
+
