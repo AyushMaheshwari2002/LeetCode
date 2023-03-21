@@ -23,3 +23,32 @@
 */
 
 
+
+class MyCalendarThree {
+public:
+    
+    map<int,int> m;
+    MyCalendarThree() {
+        
+    }
+    
+    int book(int start, int end)
+    {
+        m[start]++;
+		m[end]--;
+        
+		int maxBooking = 0, sum = 0;
+        
+		for(auto x : m)
+        {
+			sum += x.second;
+			maxBooking = max(maxBooking, sum);
+		}
+        
+		return maxBooking;
+    }
+};
+
+
+
+
