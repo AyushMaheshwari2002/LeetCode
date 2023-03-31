@@ -26,3 +26,69 @@
 */
 
 
+
+
+class Solution {
+public:
+    vector<string> removeAnagrams(vector<string>& words)
+    {
+       vector<string> v;
+
+        string x = words[0];
+        v.push_back(x);
+        sort(x.begin(), x.end());
+
+        for(int i = 1; i < words.size(); i++)
+        {
+            string z = words[i];
+            sort(z.begin(), z.end());
+            
+            if(x == z)
+                continue;
+            else 
+            {
+                v.push_back(words[i]);
+                x = z;
+            }
+        }
+
+        return v;
+    }
+};
+
+
+
+
+
+class Solution {
+public:
+    vector<string> removeAnagrams(vector<string>& words) 
+    {    
+        for(int i = words.size()-1; i > 0; i--)
+        {
+            string c1 = words[i];
+            string c2 = words[i-1];
+            
+            sort(c1.begin() ,c1.end());
+            sort(c2.begin() , c2.end());
+            
+            if(c1 == c2){
+                words[i] = "#";
+            }
+        }
+        vector<string> ans;
+        
+        for(int i = 0; i < words.size(); i++)
+        {
+            if(words[i] != "#")
+            {
+                ans.push_back(words[i]);
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+
