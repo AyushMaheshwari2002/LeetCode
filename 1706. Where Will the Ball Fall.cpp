@@ -28,3 +28,39 @@
 */
 
 
+
+class Solution {
+public:
+    
+    int helper(int row, int col, vector<vector<int>>& grid)
+    {
+        if(row >= grid.size())
+            return col;
+        
+        else if(col + 1 < grid[0].size() && grid[row][col] == 1 && grid[row][col+1] == 1)
+            return helper(row+1,col+1,grid);
+        
+        else if(col - 1 >= 0 && grid[row][col] == -1 && grid[row][col-1] == -1)
+            return helper(row+1,col-1,grid);
+        
+        else
+            return -1;
+    }
+    
+    vector<int> findBall(vector<vector<int>>& grid)
+    {    
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        vector<int> ans;
+        
+        for(int j = 0; j<m; ++j)
+        {
+            ans.push_back(helper(0,j,grid));
+        }
+        return ans;
+    }
+};
+
+
+
