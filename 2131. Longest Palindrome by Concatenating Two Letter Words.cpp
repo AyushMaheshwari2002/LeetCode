@@ -24,11 +24,10 @@
 */
 
 
-
 class Solution {
 public:
-    int longestPalindrome(vector<string>& words) 
-    {    
+    int longestPalindrome(vector<string>& words) {
+        
        int count[26][26] = {}; 
        int ans =0;
         
@@ -54,5 +53,6 @@ public:
          
     }
 };
+
 
 
