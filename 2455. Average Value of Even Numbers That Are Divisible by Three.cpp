@@ -13,3 +13,29 @@
 */
 
 
+
+class Solution {
+public:
+    int averageValue(vector<int>& nums)
+     {
+        int sum = 0, count = 0;             
+
+        for(int i = 0; i < nums.size(); i++)
+        {
+            // num[i] % 2 is b'coz we have first find the even numbers then
+            // their is another condition even number which is divisible by 3
+            if (nums[i] % 2 == 0 && nums[i] % 3 == 0) 
+            {
+                sum += nums[i];
+                count++;
+            }
+        }
+
+        if(count == 0)
+            return 0;
+            
+        return (sum/count);  
+    }
+};
+
+
