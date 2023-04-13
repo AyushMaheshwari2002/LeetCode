@@ -20,3 +20,37 @@
 */
 
 
+
+class Solution {
+public:
+    int mod=1e9+7;
+    int solve(int i, int zero, int one, vector<int> &v)
+    {
+        if(i == 0)
+            return 1;
+        
+        if(i < 0)
+            return 0;
+
+        if(v[i] != -1)
+            return v[i];
+
+        return v[i] = (solve(i-one, zero, one, v) + solve(i-zero, zero, one, v)) % mod;
+    }
+
+    int countGoodStrings(int low, int high, int zero, int one) 
+    {
+        vector<int> v(1e5+1, -1);
+        int count = 0;
+
+        for(int i = low; i <= high; i++)
+        {
+            count = (count + solve(i, zero, one, v)) % mod;
+        }
+
+        return count;
+    }
+};
+
+
+
