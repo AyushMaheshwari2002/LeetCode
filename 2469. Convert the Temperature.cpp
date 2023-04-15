@@ -19,3 +19,22 @@
 
 
 
+class Solution {
+public:
+    vector<double> convertTemperature(double celsius) 
+    {
+        vector<double> v;
+        
+        double kel = celsius + 273.15;
+        
+        double fah =(9.0/5.0) * celsius + 32;
+        
+        v.push_back(kel);
+        v.push_back(fah);
+            
+        return v;
+    }
+};
+
+
+
