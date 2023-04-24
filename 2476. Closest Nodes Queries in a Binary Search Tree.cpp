@@ -24,3 +24,60 @@
 
 
 
+class Solution {
+public:
+    void inorder(TreeNode* root, vector<int> &v)
+    {
+        if(!root) 
+            return;
+        
+        inorder(root->left, v);
+        v.push_back(root->val);
+        inorder(root->right, v);
+    }
+    
+    vector<vector<int>> closestNodes(TreeNode* root, vector<int>& queries)
+    {
+        vector<vector<int>> ans;
+        vector<int> v;
+        
+        inorder(root,v);
+        
+        for(int i = 0; i < queries.size(); i++)
+        {
+            int mini = -1, maxi = -1;
+            int idx = lower_bound(v.begin(),v.end(), queries[i]) - v.begin();
+            
+            if(idx != v.size())
+            {
+                maxi = v[idx];
+                if(maxi == queries[i])
+                {
+                    mini = maxi;
+                } 
+                else 
+                {
+                    if(idx == 0)
+                    {
+                        mini = -1;
+                    } 
+                    else 
+                    {
+                        mini = v[idx-1];
+                    }
+                }
+            }
+            else 
+            {
+                mini = v.back();
+            }
+            
+            ans.push_back({mini, maxi});
+        }
+        
+        return ans;
+    }
+};
+
+
+
