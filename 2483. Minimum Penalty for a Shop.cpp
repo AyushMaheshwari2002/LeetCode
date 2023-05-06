@@ -31,3 +31,41 @@
 
 
 
+class Solution {
+public:
+    int bestClosingTime(string c)
+    {
+        int n = c.length();
+        int ans = 0;
+        int idx= 0;
+        
+        pair<int,int> v = {0,0};
+        
+        for(int i = 0; i < n; i++)
+        {
+            if(c[i] == 'Y')
+            {
+                v.first++;
+                v.second = i+1;
+            }
+            else
+            {
+                v.first--;
+                v.second = i;
+            }
+            
+            if(v.first > ans)
+            {
+                idx = v.second;
+            }
+            
+            ans = max(ans,v.first);
+            
+        }
+        return idx;
+    }
+};
+
+
+
+
