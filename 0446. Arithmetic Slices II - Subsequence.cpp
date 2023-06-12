@@ -26,3 +26,29 @@
 
 
 
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& nums) 
+    {
+        vector<unordered_map<long ,long>>v(nums.size());
+        long long ans=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            for(int j=0;j<i;j++)
+            {
+                long long diff=(long long)nums[i]-(long long)nums[j];
+                v[i][diff]++;
+                if(v[j].count(diff))
+                {
+                    v[i][diff]+=v[j][diff];
+                    ans+=v[j][diff];
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+
