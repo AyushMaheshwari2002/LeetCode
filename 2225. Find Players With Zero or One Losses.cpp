@@ -28,4 +28,39 @@
 
 
 
+class Solution {
+public:
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) 
+    {
+        map<int,int> m;
+
+        for(int i = 0; i < matches.size(); i++)
+        {
+            m[matches[i][1]]++;
+        }
+
+        vector<int> noLost, oneLost;
+
+        for(int i = 0; i < matches.size(); i++)
+        {
+            if(m[matches[i][1]] == 1)
+            {
+                oneLost.push_back(matches[i][1]);
+            }
+
+            if(m.find(matches[i][0]) == m.end()) 
+            {
+                noLost.push_back(matches[i][0]);
+                m[matches[i][0]] = -1;              // set a default value b,coz of removing duplicates
+            }            
+        }
+
+        sort(noLost.begin(),noLost.end());
+        sort(oneLost.begin(),oneLost.end());
+        
+        return {noLost,oneLost};
+    }
+};
+
+
 
