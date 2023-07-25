@@ -27,3 +27,27 @@
 */
 
 
+
+class Solution {
+public:
+    vector<int> numberOfPairs(vector<int>& nums) 
+    {
+        unordered_map<int,int> m;
+
+        for(auto i : nums)
+            m[i]++;
+
+        int pair = 0, single = 0;
+
+        for(auto i : m)
+        {
+            pair += i.second/2;
+            single += i.second%2;
+        }
+
+        return {pair,single};
+    }
+};
+
+
+
