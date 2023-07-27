@@ -1,4 +1,4 @@
-/*  A sentence is a list of words that are separated by a single space with no leading or trailing spaces.
+lll/*  A sentence is a list of words that are separated by a single space with no leading or trailing spaces.
     For example, "Hello World", "HELLO", "hello world hello world" are all sentences.
     Words consist of only uppercase and lowercase English letters. Uppercase and lowercase English letters are considered different.
     A sentence is circular if:
