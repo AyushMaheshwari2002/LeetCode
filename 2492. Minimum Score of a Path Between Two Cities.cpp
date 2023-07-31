@@ -21,3 +21,47 @@
 */
 
 
+
+class Solution {
+public:
+    int minScore(int n, vector<vector<int>>& roads) 
+    {
+        vector<pair<int,int>> adjList[n+1];
+
+        for(int i = 0; i < roads.size(); i++)
+        {
+            adjList[roads[i][0]].push_back({roads[i][1],roads[i][2]});
+            adjList[roads[i][1]].push_back({roads[i][0],roads[i][2]});
+        }
+
+        vector<int> vis(n+1,0);
+        queue<int> q;
+        q.push(1);
+        int ans = INT_MAX;
+
+        while(!q.empty())
+        {
+            int node = q.front();
+            q.pop();
+            vis[node] = 1;
+
+            for(auto i : adjList[node])
+            {
+                //added this because we can visit the nodes multiple times so if the node is visited we have to check
+                //if the neighbour can give minimum score or not
+                ans = min(ans, i.second);
+
+                if(!vis[i.first])
+                {
+                    vis[i.first] = 1;
+                    q.push(i.first);
+
+                    ans = min(ans, i.second);
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+
