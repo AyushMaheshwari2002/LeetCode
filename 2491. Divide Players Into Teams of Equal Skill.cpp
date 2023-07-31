@@ -25,3 +25,31 @@
             There is no way to divide the players into teams such that the total skill of each team is equal.
 */
 
+
+
+class Solution {
+public:
+    long long dividePlayers(vector<int>& skill) 
+    {
+        sort(skill.begin(),skill.end());
+        int n = skill.size();
+
+        int i = 0, j = n-1;
+        long long int sum = 0;
+
+        long long int for_check = skill[0] + skill[n-1];
+
+        while(i < j)
+        {
+            if(skill[i] + skill[j] != for_check)
+                return -1;
+
+            sum += skill[i] * skill[j];
+            i++, j--;
+        }
+
+        return sum;
+    }
+};
+
+
