@@ -1,4 +1,5 @@
-/* Given four integers length, width, height, and mass, representing the dimensions and mass of a box, respectively, return a string representing the category of the box.
+/* Given four integers length, width, height, and mass, representing the dimensions and mass of a box, respectively, return a string representing the 
+   category of the box.
       The box is "Bulky" if:
       Any of the dimensions of the box is greater or equal to 104.
       Or, the volume of the box is greater or equal to 109.
@@ -29,4 +30,25 @@
 */
 
 
+
+class Solution {
+public:
+    string categorizeBox(long length, long width, long height, int mass) 
+    {   
+        if(length>=10000 || width>=10000||height>=10000||length*width*height>=1000000000)
+        {
+            if(mass >=100) 
+            {
+                return "Both";
+            }
+            else
+                return "Bulky";
+        }
+        
+        else if(mass >= 100)
+            return "Heavy";
+        
+        return "Neither";
+    }
+};
 
