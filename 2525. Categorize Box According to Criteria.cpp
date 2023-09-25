@@ -1,4 +1,4 @@
-gy/* Given four integers length, width, height, and mass, representing the dimensions and mass of a box, respectively, return a string representing the 
+/* Given four integers length, width, height, and mass, representing the dimensions and mass of a box, respectively, return a string representing the 
    category of the box.
       The box is "Bulky" if:
       Any of the dimensions of the box is greater or equal to 104.
